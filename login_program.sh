@@ -41,9 +41,9 @@ echo sup
 while (($count == 0))
 do
 	echo -------------------------------------
-	echo \|Welcome to the Group Login Program \|
+	echo \|Welcome to the Group Login Program\s\|
 	echo -------------------------------------
-	echo \|Please enter your username\:       \|
+	echo \|Please enter your username\:\s\s\t\|
 	echo -------------------------------------
 	read uname
 
@@ -52,7 +52,7 @@ do
 
 
 	echo -------------------------------------
-	echo \|Please enter your password\:       \|
+	echo \|Please enter your password\:\t\s\s\|
 	echo -------------------------------------
 	read paswrd
 
@@ -71,7 +71,7 @@ do
 
 
     	else
-        	echo \|Sorry, wrong password.             \|
+        	echo \|Sorry, wrong password.\t\t\s\s\s\|
     		echo -------------------------------------
     	fi
 
@@ -79,7 +79,7 @@ do
     
 	else
     clear
-    	echo \|Sorry, that user does not exist.   \|
+    	echo \|Sorry, that user does not exist.\s\s\s\|
     	echo -------------------------------------
 	clear
 	fi
@@ -97,7 +97,7 @@ do
 clear
 
 echo -------------------------------------
-echo -e\| '\t'Commands available to you    \|
+echo -e\| '\t'Commands available to you\s\s\s\s\|
 echo -------------------------------------
 
 
@@ -105,13 +105,13 @@ admin=$(awk '{print $6}' ~/Desktop/scripts/udata/temp.txt)
 if [ $admin = "1"  ];
     	then
     	{
-        	echo \|1. Create user                     \|
-        	echo \|2. Change password                 \|
-        	echo \|3. Generate invoice                \|
-        	echo \|4. Add contacts to device          \|
-        	echo \|5. Place call                      \|
-        	echo \|6. Check device call log           \|
-        	echo \|7. Check contacts                  \|
+        	echo \|1. Create user\t\t\t\t\s\|
+        	echo \|2. Change password\t\t\t\s\s\|
+        	echo \|3. Generate invoice\t\t\t\s\|
+        	echo \|4. Add contacts to device\t\t\|
+        	echo \|5. Place call\t\t\t\t\s\|
+        	echo \|6. Check device call log\t\t\s\|
+        	echo \|7. Check contacts\t\t\t\s\s\s\|
 		echo -------------------------------------
         	echo Please enter the number of the menu you wish to enter
     	read menuSelect
@@ -121,18 +121,18 @@ if [ $admin = "1"  ];
     while (($count == 0))
     do
 	echo -------------------------------------
-    	echo \|Please enter user name\:           \|
+    	echo \|Please enter user name\:\t\t\s\|
 	echo -------------------------------------
     	read contAdd
     
 	echo -------------------------------------
-    	echo \|Please enter user password\:       \|
+    	echo \|Please enter user password\:\t\s\s\|
 	echo -------------------------------------
     	read contPass
 
 
 	echo -------------------------------------
-    	echo \|Is User an admin? 1\/0\:           \|
+    	echo \|Is User an admin? 1\/0\:\t\t\s\|
 	echo -------------------------------------
     	read contAdmin
     	
@@ -169,7 +169,7 @@ if [ $admin = "1"  ];
     temp=$uname
     while (($count == 0))
     do
-        	echo \|Please enter the username\:        \|
+        	echo \|Please enter the username\:\t\s\s\s\|
 		echo -------------------------------------
         	read uname  
     
@@ -181,7 +181,7 @@ if [ $admin = "1"  ];
         	then
    	 {
    		 echo -------------------------------------
-       		 echo \|Please enter old password\:        \|
+       		 echo \|Please enter old password\:\t\s\s\s\|
 		 echo -------------------------------------
        		 read paswrd
            		 echo $enterName > ~/Desktop/scripts/udata/temp.txt
@@ -190,7 +190,7 @@ if [ $admin = "1"  ];
                 	then
    		 {
                		 echo -------------------------------------
-               		 echo \|Enter new password \for $uname     \|
+               		 echo \|Enter new password \for $uname\t\|
 			 echo -------------------------------------
                		 read $temp    
            	 
@@ -225,7 +225,7 @@ if [ $admin = "1"  ];
             	else
    		 {
 			echo -------------------------------------
-                	echo \|Sorry, wrong password.             \|
+                	echo \|Sorry, wrong password.\t\t\s\s\s\|
 			echo -------------------------------------
    		 }    
    	 	fi
@@ -235,7 +235,7 @@ if [ $admin = "1"  ];
         	else
    	 {
             	echo -------------------------------------
-            	echo \|Sorry, that user does not exist.   \|
+            	echo \|Sorry, that user does not exist.\s\s\s\|
 		echo -------------------------------------
    	 }
         	fi
@@ -262,7 +262,7 @@ if [ $admin = "1"  ];
     
    		 [nN] )
 		 echo -------------------------------------
-       		 echo \|Okay, maybe some other time.       \|
+       		 echo \|Okay, maybe some other time.\t\s\s\|
 		 echo -------------------------------------
 
 ;;
@@ -270,7 +270,7 @@ if [ $admin = "1"  ];
     
    		 *)
 		 echo -------------------------------------
-       		 echo \|Invalid input, please try again.   \|
+       		 echo \|Invalid input, please try again.\s\s\s\|
 		 echo -------------------------------------
 
 ;;
@@ -279,12 +279,12 @@ if [ $admin = "1"  ];
     
     4)
 		 echo -------------------------------------
-   		 echo \|Please enter contact name\:        \|
+   		 echo \|Please enter contact name\:\t\s\s\s\|
 		 echo -------------------------------------
    		 read contAdd
     
 		 echo -------------------------------------
-   		 echo \|Please enter contact number\:      \|
+   		 echo \|Please enter contact number\:\t\s\|
 		 echo -------------------------------------
    		 read contNum
     
@@ -328,12 +328,12 @@ if [ $admin = "1"  ];
 }
 else
 {
-   		echo \|1. Add contacts to device          \|
-        	echo \|2. Place call                      \|
-        	echo \|3. Check device call log           \|
-        	echo \|4. Check contacts                  \|
-        	echo \|5. Check invoice                   \|
-        	echo \|6. Pay bill                        \|
+   		echo \|1. Add contacts to device\t\t\|
+        	echo \|2. Place call\t\t\t\t\s\s\|
+        	echo \|3. Check device call log\t\t\s\|
+        	echo \|4. Check contacts\t\t\t\s\s\s\|
+        	echo \|5. Check invoice\t\t\t\s\s\s\s\|
+        	echo \|6. Pay bill\t\t\t\t\s\s\s\s\|
 		echo -------------------------------------
         	echo Please enter the number of the menu you wish to enter
         	read menuSelect
@@ -342,12 +342,12 @@ else
     case $menuSelect in
     1)
 		echo -------------------------------------
-   	 	echo \|Please enter contact name\:        \|
+   	 	echo \|Please enter contact name\:\t\s\s\s\|
 		echo -------------------------------------
    	 	read contAdd
    	 
 		echo -------------------------------------
-   	 	echo \|Please enter contact number\:      \|
+   	 	echo \|Please enter contact number\:\t\s\|
 		echo -------------------------------------
    	 	read contNum
    	 
