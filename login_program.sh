@@ -1,24 +1,36 @@
 #!/bin/bash
 
 
+
+
 declare -i count
 declare -i admin
+
+
 
 
 menuSelect=""
 temp=""
 
 
+
+
 uname=""
 paswrd=""
+
+
 
 
 enterName=""
 enterPass=""
 
 
+
+
 count=0
 admin=0
+
+
 
 
 cont=""
@@ -28,14 +40,16 @@ contPass=""
 contAdmin=""
 
 
+
+
 contGet=""
 contNumSet=""
+
 
 invoice=""
 inv=""
 
 
-echo sup
 
 
 while (($count == 0))
@@ -48,13 +62,19 @@ do
 	read uname
 
 
+
+
 	enterName=$(grep "$uname" ~/Desktop/scripts/udata/user_list.txt)
+
+
 
 
 	echo -------------------------------------
 	echo \|"Please enter your password:        "\|
 	echo -------------------------------------
 	read paswrd
+
+
 
 
 	if [ "$enterName" ];
@@ -70,10 +90,14 @@ do
         	count=1
 
 
+
+
     	else
         	echo \|"Sorry, wrong password.             "\|
     		echo -------------------------------------
     	fi
+
+
 
 
     
@@ -86,7 +110,13 @@ do
 done
 
 
+
+
 count=0
+
+
+
+
 
 
 
@@ -94,11 +124,15 @@ count=0
 while (($count == 0))
 do
 
+
 clear
+
 
 echo -------------------------------------
 echo \|"     Commands available to you    "\|
 echo -------------------------------------
+
+
 
 
 admin=$(awk '{print $6}' ~/Desktop/scripts/udata/temp.txt)
@@ -129,6 +163,8 @@ if [ $admin = "1"  ];
     	echo \|"Please enter user password\:       "\|
 	echo -------------------------------------
     	read contPass
+
+
 
 
 	echo -------------------------------------
@@ -181,7 +217,7 @@ if [ $admin = "1"  ];
         	then
    	 {
    		 echo -------------------------------------
-       		 echo \|"Please enter old password\:        "\|
+       		 echo \|"Please enter old password:        "\|
 		 echo -------------------------------------
        		 read paswrd
            		 echo $enterName > ~/Desktop/scripts/udata/temp.txt
@@ -190,7 +226,7 @@ if [ $admin = "1"  ];
                 	then
    		 {
                		 echo -------------------------------------
-               		 echo \|"Enter new password \for $uname     "\|
+               		 echo \|"Enter new password for $uname     "\|
 			 echo -------------------------------------
                		 read $temp    
            	 
@@ -231,6 +267,8 @@ if [ $admin = "1"  ];
    	 	fi
 
 
+
+
    	 }   	 
         	else
    	 {
@@ -265,6 +303,7 @@ if [ $admin = "1"  ];
        		 echo \|"Okay, maybe some other time.       "\|
 		 echo -------------------------------------
 
+
 ;;
    	 
     
@@ -273,24 +312,26 @@ if [ $admin = "1"  ];
        		 echo \|"Invalid input, please try again.   "\|
 		 echo -------------------------------------
 
+
 ;;
    	 esac
     ;;
     
     4)
 		 echo -------------------------------------
-   		 echo \|"Please enter contact name\:        "\|
+   		 echo \|"Please enter contact name:        "\|
 		 echo -------------------------------------
    		 read contAdd
     
 		 echo -------------------------------------
-   		 echo \|"Please enter contact number\:      "\|
+   		 echo \|"Please enter contact number:      "\|
 		 echo -------------------------------------
    		 read contNum
+
+
+		 temp = wc -l ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt
     
-   		 cont=(wc -l ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt)".\s" $contAdd "\sNumber\s" $contNum\n
-   	 
-   		 $cont >> ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt
+   		 echo $temp $contAdd Number $contNum\n >> ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt
     ;;
     
     5)
@@ -299,8 +340,8 @@ if [ $admin = "1"  ];
 	 echo -------------------------------------
    	 read temp
     
-   	 $temp >> ~/Desktop/scripts/udata/call_log/$uname".txt"
-   	 '1' >> ~/Desktop/scripts/udata/invoice/$uname".txt"
+   	 echo $temp >> ~/Desktop/scripts/udata/call_log/$uname".txt"
+   	 echo "1" >> ~/Desktop/scripts/udata/invoice/$uname".txt"
     ;;
     
     6)
@@ -339,6 +380,8 @@ else
         	read menuSelect
 
 
+
+
     case $menuSelect in
     1)
 		echo -------------------------------------
@@ -351,10 +394,12 @@ else
 		echo -------------------------------------
    	 	read contNum
    	 
-   	 	cont=(wc -l ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt)".\s" $contAdd "\sNumber\s" $contNum\n
+   	 	cont=(wc -l ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt)
    		 
-   	 	$cont >> ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt
+   	 	echo $cont $contAdd Number $contNum\n >> ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt
    	 ;;
+
+
 
 
    	 2)
@@ -363,8 +408,8 @@ else
 		 echo -------------------------------------
    		 read temp
    	 
-   	 $temp >> ~/Desktop/scripts/udata/call_log/$uname".txt"
-   	 "1" >> ~/Desktop/scripts/udata/invoice/$uname".txt"
+   	 echo $temp >> ~/Desktop/scripts/udata/call_log/$uname".txt"
+   	 echo "1" >> ~/Desktop/scripts/udata/invoice/$uname".txt"
    	 ;;
     
    	 3)
@@ -400,11 +445,15 @@ else
    			 }
 
 
+
+
    	 	elif [[$temp -eq N] || [$temp -eq n]];
    	 	then
    			 {
    			 	echo Okay, maybe some other time.
    			 }
+
+
 
 
    	 	else
@@ -416,6 +465,8 @@ else
     
 
 
+
+
     *)
    	 echo invalid input
     ;;
@@ -425,3 +476,10 @@ fi
 echo
 temp=""
 done
+
+
+
+
+
+
+
