@@ -31,8 +31,13 @@ contAdmin=""
 contGet=""
 contNumSet=""
 
+<<<<<<< HEAD
 invToPay=""
 invWithName=""
+=======
+invoice=""
+inv=""
+>>>>>>> refs/remotes/NoxxShus/master
 
 
 echo sup
@@ -41,9 +46,15 @@ echo sup
 while (($count == 0))
 do
 	echo -------------------------------------
+<<<<<<< HEAD
 	echo \|Welcome to the Group Login Program \|
 	echo -------------------------------------
 	echo \|Please enter your username\:       \|
+=======
+	echo \|"Welcome to the Group Login Program "\|
+	echo -------------------------------------
+	echo \|"Please enter your username:        "\|
+>>>>>>> refs/remotes/NoxxShus/master
 	echo -------------------------------------
 	read uname
 
@@ -52,7 +63,11 @@ do
 
 
 	echo -------------------------------------
+<<<<<<< HEAD
 	echo \|Please enter your password\:       \|
+=======
+	echo \|"Please enter your password:        "\|
+>>>>>>> refs/remotes/NoxxShus/master
 	echo -------------------------------------
 	read paswrd
 
@@ -71,7 +86,11 @@ do
 
 
     	else
+<<<<<<< HEAD
         	echo \|Sorry, wrong password.             \|
+=======
+        	echo \|"Sorry, wrong password.             "\|
+>>>>>>> refs/remotes/NoxxShus/master
     		echo -------------------------------------
     	fi
 
@@ -79,7 +98,11 @@ do
     
 	else
     clear
+<<<<<<< HEAD
     	echo \|Sorry, that user does not exist.   \|
+=======
+    	echo \|"Sorry, that user does not exist.   "\|
+>>>>>>> refs/remotes/NoxxShus/master
     	echo -------------------------------------
 	clear
 	fi
@@ -97,14 +120,19 @@ do
 clear
 
 echo -------------------------------------
+<<<<<<< HEAD
 echo -e\| '\t'Commands available to you    \|
+=======
+echo \|"     Commands available to you    "\|
+>>>>>>> refs/remotes/NoxxShus/master
 echo -------------------------------------
 
 
 admin=$(awk '{print $6}' ~/Desktop/scripts/udata/temp.txt)
-if [ $admin = "1"  ];
-    	then
+if [ $admin = "1"  ];     
+    	then         	
     	{
+<<<<<<< HEAD
         	echo \|1. Create user                     \|
         	echo \|2. Change password                 \|
         	echo \|3. Generate invoice                \|
@@ -116,6 +144,15 @@ if [ $admin = "1"  ];
 		if grep -q $uname ~/Desktop/scripts/udata/invoice/htp.txt ; then
 		echo -------------------------------------
 		echo \|You have an invoice due.           \|
+=======
+        	echo \|"1. Create user                    "\|
+        	echo \|"2. Change password                "\|
+        	echo \|"3. Generate invoice               "\|
+        	echo \|"4. Add contacts to device         "\|
+        	echo \|"5. Place call                     "\|
+        	echo \|"6. Check device call log          "\|
+        	echo \|"7. Check contacts                 "\|
+>>>>>>> refs/remotes/NoxxShus/master
 		echo -------------------------------------
 		echo
         	echo Please enter the number of the menu you wish to enter
@@ -130,18 +167,30 @@ if [ $admin = "1"  ];
     while (($count == 0))
     do
 	echo -------------------------------------
+<<<<<<< HEAD
     	echo \|Please enter user name\:           \|
+=======
+    	echo \|"Please enter user name\:           "\|
+>>>>>>> refs/remotes/NoxxShus/master
 	echo -------------------------------------
     	read contAdd
     
 	echo -------------------------------------
+<<<<<<< HEAD
     	echo \|Please enter user password\:       \|
+=======
+    	echo \|"Please enter user password\:       "\|
+>>>>>>> refs/remotes/NoxxShus/master
 	echo -------------------------------------
     	read contPass
 
 
 	echo -------------------------------------
+<<<<<<< HEAD
     	echo \|Is User an admin? 1\/0\:           \|
+=======
+    	echo \|"Is User an admin? 1\/0\:           "\|
+>>>>>>> refs/remotes/NoxxShus/master
 	echo -------------------------------------
     	read contAdmin
     	
@@ -178,7 +227,11 @@ if [ $admin = "1"  ];
     temp=$uname
     while (($count == 0))
     do
+<<<<<<< HEAD
         	echo \|Please enter the username\:        \|
+=======
+        	echo \|"Please enter the username\:        "\|
+>>>>>>> refs/remotes/NoxxShus/master
 		echo -------------------------------------
         	read uname  
     
@@ -190,7 +243,11 @@ if [ $admin = "1"  ];
         	then
    	 {
    		 echo -------------------------------------
+<<<<<<< HEAD
        		 echo \|Please enter old password\:        \|
+=======
+       		 echo \|"Please enter old password\:        "\|
+>>>>>>> refs/remotes/NoxxShus/master
 		 echo -------------------------------------
        		 read paswrd
            		 echo $enterName > ~/Desktop/scripts/udata/temp.txt
@@ -199,7 +256,11 @@ if [ $admin = "1"  ];
                 	then
    		 {
                		 echo -------------------------------------
+<<<<<<< HEAD
                		 echo \|Enter new password \for $uname     \|
+=======
+               		 echo \|"Enter new password \for $uname     "\|
+>>>>>>> refs/remotes/NoxxShus/master
 			 echo -------------------------------------
                		 read $temp    
            	 
@@ -234,7 +295,11 @@ if [ $admin = "1"  ];
             	else
    		 {
 			echo -------------------------------------
+<<<<<<< HEAD
                 	echo \|Sorry, wrong password.             \|
+=======
+                	echo \|"Sorry, wrong password.             "\|
+>>>>>>> refs/remotes/NoxxShus/master
 			echo -------------------------------------
    		 }    
    	 	fi
@@ -244,7 +309,11 @@ if [ $admin = "1"  ];
         	else
    	 {
             	echo -------------------------------------
+<<<<<<< HEAD
             	echo \|Sorry, that user does not exist.   \|
+=======
+            	echo \|"Sorry, that user does not exist.   "\|
+>>>>>>> refs/remotes/NoxxShus/master
 		echo -------------------------------------
    	 }
         	fi
@@ -264,6 +333,7 @@ if [ $admin = "1"  ];
     
    	 case $temp in
    		 [yY] )
+<<<<<<< HEAD
 		 echo -------------------------------------
 		 echo \|"For an individual(1) or for all(2)?"\|
 		 echo -------------------------------------
@@ -310,17 +380,46 @@ esac
 		 echo -------------------------------------
 
 ;;
+=======
+                 inv=$(wc -l < ~/Desktop/scripts/udata/call_log/"$uname.txt")
+                 echo An invoice has been created.
+                
+;;
+    
+   		 [nN] )
+		 echo -------------------------------------
+       		 echo \|"Okay, maybe some other time.       "\|
+		 echo -------------------------------------
+
+;;
+   	 
+    
+   		 *)
+		 echo -------------------------------------
+       		 echo \|"Invalid input, please try again.   "\|
+		 echo -------------------------------------
+
+;;
+>>>>>>> refs/remotes/NoxxShus/master
    	 esac
     ;;
     
     4)
 		 echo -------------------------------------
+<<<<<<< HEAD
    		 echo \|Please enter contact name\:        \|
+=======
+   		 echo \|"Please enter contact name\:        "\|
+>>>>>>> refs/remotes/NoxxShus/master
 		 echo -------------------------------------
    		 read contAdd
     
 		 echo -------------------------------------
+<<<<<<< HEAD
    		 echo \|Please enter contact number\:      \|
+=======
+   		 echo \|"Please enter contact number\:      "\|
+>>>>>>> refs/remotes/NoxxShus/master
 		 echo -------------------------------------
    		 read contNum
     
@@ -371,6 +470,7 @@ esac
 }
 else
 {
+<<<<<<< HEAD
    		echo \|1. Add contacts to device          \|
         	echo \|2. Place call                      \|
         	echo \|3. Check device call log           \|
@@ -379,6 +479,14 @@ else
         	echo \|6. Pay bill                        \|
 		echo -------------------------------------
 		if grep -q $uname ~/Desktop/scripts/udata/invoice/htp.txt ; then
+=======
+   		echo \|"1. Add contacts to device          "\|
+        	echo \|"2. Place call                      "\|
+        	echo \|"3. Check device call log           "\|
+        	echo \|"4. Check contacts                  "\|
+        	echo \|"5. Check invoice                   "\|
+        	echo \|"6. Pay bill                        "\|
+>>>>>>> refs/remotes/NoxxShus/master
 		echo -------------------------------------
 		echo \|You have an invoice due.           \|
 		echo -------------------------------------
@@ -393,12 +501,20 @@ else
     case $menuSelect in
     1)
 		echo -------------------------------------
+<<<<<<< HEAD
    	 	echo \|Please enter contact name\:        \|
+=======
+   	 	echo \|"Please enter contact name:         "\|
+>>>>>>> refs/remotes/NoxxShus/master
 		echo -------------------------------------
    	 	read contAdd
    	 
 		echo -------------------------------------
+<<<<<<< HEAD
    	 	echo \|Please enter contact number\:      \|
+=======
+   	 	echo \|"Please enter contact number:       "\|
+>>>>>>> refs/remotes/NoxxShus/master
 		echo -------------------------------------
    	 	read contNum
    	 
@@ -409,6 +525,7 @@ else
 
 
    	 2)
+<<<<<<< HEAD
 		
 	 	if grep -q $uname ~/Desktop/scripts/udata/invoice/htp.txt ; then
 		echo -------------------------------------
@@ -420,6 +537,12 @@ else
    		echo Please enter the name of the person you are calling
 		echo -------------------------------------
    		read temp
+=======
+		 echo -------------------------------------
+   		 echo Please enter the name of the person you are calling
+		 echo -------------------------------------
+   		 read temp
+>>>>>>> refs/remotes/NoxxShus/master
    	 
    	 	echo $temp >> ~/Desktop/scripts/udata/call_log/$uname".txt"
    	 	echo $temp >> ~/Desktop/scripts/udata/invoice/$uname".txt"
