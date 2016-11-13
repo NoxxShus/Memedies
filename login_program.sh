@@ -155,32 +155,32 @@ if [ $admin = "1"  ];
     while (($count == 0))
     do
 	echo -------------------------------------
-    	echo \|"Please enter user name\:           "\|
+    	echo \|Please enter user name\:           \|
 	echo -------------------------------------
     	read contAdd
     
 	echo -------------------------------------
-    	echo \|"Please enter user password\:       "\|
+    	echo \|Please enter user password\:       \|
 	echo -------------------------------------
     	read contPass
 
 
-
-
 	echo -------------------------------------
-    	echo \|"Is User an admin? 1\/0\:           "\|
+    	echo \|Is User an admin? 1\/0\:           \|
 	echo -------------------------------------
     	read contAdmin
     	
-	if [ $(echo "$contPass" | tr -dc "[;digit;]") ]; then
-		if [ $(echo "$contPass" | tr -dc "[;lower;]") ]; then
-			if [ $(echo "$contPass" | tr -dc "[;upper;]") ]; then
-    	cont="Username\s" $contAdd "\s password \s" $contPass "\s admin \s" $contAdmin "\n"
-   	 
-    	$cont >> ~/Desktop/scripts/udata/user_list.txt
-   	 touch ~/Desktop/scripts/udata/call_log/"$contAdd.txt"
+	if [ $(echo "$contPass" | tr -dc "[:digit:]") ];
+ then
+		if [ $(echo "$contPass" | tr -dc "[:lower:]") ];
+ then
+			if [ $(echo "$contPass" | tr -dc "[:upper:]") ];
+ then
+	 echo Username $contAdd password $contPass admin $contAdmin >> ~/Desktop/scripts/udata/user_list.txt
+	 touch ~/Desktop/scripts/udata/call_log/"$contAdd.txt"
    	 touch ~/Desktop/scripts/udata/contacts/"$contAdd.txt"
    	 touch ~/Desktop/scripts/udata/invoice/"$contAdd.txt"
+count=1
 	 		else
    			{
           		    	echo invalid password, please use capitals, lowercase, and numbers.
@@ -202,14 +202,13 @@ if [ $admin = "1"  ];
    
     ;;
     2)
-    temp=$uname
     while (($count == 0))
     do
-        	echo \|"Please enter the username\:        "\|
+        	echo \|Please enter the username\:        \|
 		echo -------------------------------------
-        	read uname  
+        	read uname2  
     
-        	enterName=$(grep "$uname"  ~/Desktop/scripts/udata/user_list.txt)
+        	enterName=$(grep "$uname2"  ~/Desktop/scripts/udata/user_list.txt)
     
    	 
     
@@ -217,28 +216,41 @@ if [ $admin = "1"  ];
         	then
    	 {
    		 echo -------------------------------------
-       		 echo \|"Please enter old password:        "\|
+       		 echo \|Please enter old password\:        \|
 		 echo -------------------------------------
        		 read paswrd
-           		 echo $enterName > ~/Desktop/scripts/udata/temp.txt
-           		 enterPass=$(awk '{print $4}' ~/Desktop/scripts/udata/temp.txt)
+           		 echo $enterName > ~/Desktop/scripts/udata/temp2.txt
+           		 enterPass=$(awk '{print $4}' ~/Desktop/scripts/udata/temp2.txt)
            		 if [ "$enterPass" = "$paswrd" ];
                 	then
    		 {
-               		 echo -------------------------------------
-               		 echo \|"Enter new password for $uname     "\|
-			 echo -------------------------------------
-               		 read $temp    
+               		 
            	 
-          				 while (awk "{print $4}" = $paswrd)
+          while [ "$enterPass" == "$paswrd" ] ;
    			 do
-           if [ $(echo "$contPass" | tr -dc "[;digit;]") ]; then
-		if [ $(echo "$contPass" | tr -dc "[;lower;]") ]; then
-			if [ $(echo "$contPass" | tr -dc "[;upper;]") ]; then
-   				 {
+
+			 echo -------------------------------------
+               		 echo \|Enter new password \for $uname2     \|
+			 echo -------------------------------------
+               		 read temp    
+
+                         perl -pi -e "s/$paswrd/$temp/g" ~/Desktop/scripts/udata/temp2.txt
+
+           if [ $(echo "$temp" | tr -dc "[:digit:]") ]; 
+		then
+		
+		if [ $(echo "$temp" | tr -dc "[:lower:]") ]; 
+			then
+			
+			if [ $(echo "$temp" | tr -dc "[:upper:]") ]; 
+				then
+   				 
            		    		 echo valid
-   				 sed -e 's/$paswrd/$temp/g'~/Desktop/scripts/udata/user_list.txt  
-   				 }
+				
+   				perl -pi -e "s/$paswrd/$temp/g" ~/Desktop/scripts/udata/user_list.txt
+break;
+   				 
+
    	           		 	else
    				 {
           		    			 echo invalid password, please use capitals, lowercase, and numbers.
@@ -261,19 +273,17 @@ if [ $admin = "1"  ];
             	else
    		 {
 			echo -------------------------------------
-                	echo \|"Sorry, wrong password.             "\|
+                	echo \|Sorry, wrong password.             \|
 			echo -------------------------------------
    		 }    
    	 	fi
-
-
 
 
    	 }   	 
         	else
    	 {
             	echo -------------------------------------
-            	echo \|"Sorry, that user does not exist.   "\|
+            	echo \|Sorry, that user does not exist.   \|
 		echo -------------------------------------
    	 }
         	fi
@@ -281,7 +291,6 @@ if [ $admin = "1"  ];
     done
     
     count=0
-    uname=$temp
     temp=""
     ;;
     
