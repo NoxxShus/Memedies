@@ -50,6 +50,41 @@ invoice=""
 inv=""
 
 
+temp3=""
+temp4=0
+
+
+temp='cat user_list.txt | wc-l'
+
+
+uname=$(awk '{ print $2 }' ~/Desktop/scripts/udata/user_list.txt)
+	
+echo $uname >> ~/Desktop/scripts/udata/temp3.txt
+abc=0
+for gtfo in {1..$temp}
+do
+	((abc=abc+1))
+	echo $abc
+	temp3=$(awk -v def=$abc '{ print $def }' ~/Desktop/scripts/udata/temp3.txt)
+	
+	for cnt in {1..5}
+	do
+		temp2=($RANDOM%2)
+		temp2=1
+		if [ $temp2 == 1 ]
+		then
+			#here we say that they got an incoming call
+			echo Fuckoff
+			echo "1" >> ~/Desktop/scripts/udata/invoice/"$temp3.txt"
+		fi
+
+
+	done
+done
+
+
+uname="
+
 
 
 while (($count == 0))
