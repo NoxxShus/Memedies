@@ -57,25 +57,23 @@ temp4=0
 
 temp='cat user_list.txt | wc-l'
 
-
 uname=$(awk '{ print $2 }' ~/Desktop/scripts/udata/user_list.txt)
 	
-echo $uname >> ~/Desktop/scripts/udata/temp3.txt
-abc=0
-for gtfo in {1..$temp}
+echo $uname > ~/Desktop/scripts/udata/temp3.txt
+((abc=0))
+#used to be for contMain in {1..$temp}
+for contMain in {1..6}
 do
 	((abc=abc+1))
-	echo $abc
 	temp3=$(awk -v def=$abc '{ print $def }' ~/Desktop/scripts/udata/temp3.txt)
+  touch ~/Desktop/scripts/udata/invoice/"$temp3.txt"
 	
-	for cnt in {1..5}
+	for contSub in {1..5}
 	do
-		temp2=($RANDOM%2)
-		temp2=1
-		if [ $temp2 == 1 ]
+		((temp2=($RANDOM%2)))
+		if [ $temp2 == 1 ];
 		then
 			#here we say that they got an incoming call
-			echo Fuckoff
 			echo "1" >> ~/Desktop/scripts/udata/invoice/"$temp3.txt"
 		fi
 
@@ -84,17 +82,17 @@ do
 done
 
 
-uname="
+uname=""
 
 
 
 while (($count == 0))
 do
-	echo -------------------------------------
-	echo \|"Welcome to the Group Login Program "\|
-	echo -------------------------------------
-	echo \|"Please enter your username:        "\|
-	echo -------------------------------------
+	echo --------------------------------------
+	echo \|" Welcome to the Group Login Program "\|
+  echo \|"                                    "\|
+	echo \|"    Please enter your username:     "\|
+	echo --------------------------------------
 	read uname
 
 
@@ -105,9 +103,9 @@ do
 
 
 
-	echo -------------------------------------
-	echo \|"Please enter your password:        "\|
-	echo -------------------------------------
+	echo --------------------------------------
+	echo \|"   Please enter your password:     "\|
+	echo --------------------------------------
 	read paswrd
 
 
@@ -163,8 +161,8 @@ do
 
 clear
 
-
 echo -------------------------------------
+echo \|"           Welcome $uname          "\|
 echo \|"     Commands available to you    "\|
 echo -------------------------------------
 
@@ -172,9 +170,8 @@ echo -------------------------------------
 
 
 admin=$(awk '{print $6}' ~/Desktop/scripts/udata/temp.txt)
-if [ $admin = "1"  ];     
-    	then         	
-    	{
+case $admin in    
+    	1)
         	echo \|"1. Create user                    "\|
         	echo \|"2. Change password                "\|
         	echo \|"3. Generate invoice               "\|
@@ -182,12 +179,14 @@ if [ $admin = "1"  ];
         	echo \|"5. Place call                     "\|
         	echo \|"6. Check device call log          "\|
         	echo \|"7. Check contacts                 "\|
+          echo \|"8. Pay Invoice (to yourself)      "\|
+          echo \|"9. Exit                           "\|
 		echo -------------------------------------
-        	echo Please enter the number of the menu you wish to enter
 		
-		if grep -q $uname ~/Desktop/scripts/udata/invoice/htp.txt ; then
+		if  grep -q $uname ~/Desktop/scripts/udata/invoice/htp.txt  ; 
+			then
   		echo -------------------------------------
- 		echo \|You have an invoice due.           \|
+ 		echo \|"     You have an invoice due.      "\|
  		echo -------------------------------------
  		echo
           	echo Please enter the number of the menu you wish to enter
@@ -202,19 +201,19 @@ if [ $admin = "1"  ];
     1)
     while (($count == 0))
     do
-	echo -------------------------------------
-    	echo \|Please enter user name\:           \|
-	echo -------------------------------------
+	echo --------------------------------------
+  echo \|"    Please enter user username:     "\|
+  echo --------------------------------------
     	read contAdd
     
 	echo -------------------------------------
-    	echo \|Please enter user password\:       \|
+    	echo \|"    Please enter "$contAdd"'s password:   "\|
 	echo -------------------------------------
     	read contPass
 
 
 	echo -------------------------------------
-    	echo \|Is User an admin? 1\/0\:           \|
+    	echo \|"   Will "$contAdd" be an Admin? (1/0)   "\|
 	echo -------------------------------------
     	read contAdmin
     	
@@ -343,37 +342,33 @@ break;
     ;;
     
     3)
-  		 echo -------------------------------------
- +   		 echo \|"Do you want to create an invoice? \(Y\/n\)"\|
-  		 echo -------------------------------------
+  		 echo ------------------------------------------
+    		 echo \|"Do you want to create an invoice? (Y/n)"\|
+  		 echo ------------------------------------------
      		 read temp
       
      	 case $temp in
      		 [yY] )
 		 
  		 echo -------------------------------------
- 		 echo \|"For an individual(1) or for all(2)?"\|
- 		 echo -------------------------------------
- 		 read temp
- 	 case $temp in
- 		 [1] )
- 		 echo -------------------------------------
-        		 echo \|"Please enter a user.              "\|
+     echo \|"        Please enter a user.       "\|
  		 echo -------------------------------------
  		 read temp
  
                   invToPay=$(wc -l < ~/Desktop/scripts/udata/invoice/$temp.txt)
+                  ((invToPay--))
  		 echo Username $temp Balance "$"$invToPay >> ~/Desktop/scripts/udata/invoice/htp.txt
  		 echo -------------------------------------
                   echo \|"An invoice has been created. $"$invToPay" is owed."\|
- 		 echo -------------------------------------      
- ;;
- 		 [2] )
- 		 
- 		 echo -------------------------------------
- 		 echo \|"Well, you cant.                    "\|
- 		 echo -------------------------------------
- ;;
+ 		 echo ------------------------------------- 
+     ;;
+     [nN] )
+      echo ------------------------------------------------
+      echo \|"No man has ever made money by saying no to it."\|
+      echo ------------------------------------------------
+      echo press enter to return to main menu
+     read temp
+     ;;
  		 * )
  		 echo -------------------------------------
         		 echo \|"Invalid input, please try again.   "\|
@@ -393,29 +388,19 @@ break;
    		 echo \|"Please enter contact number:      "\|
 		 echo -------------------------------------
    		 read contNum
-
-
-		 temp = wc -l ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt
     
-   		 echo $temp $contAdd Number $contNum\n >> ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt
-    ;;
-    
-    5)
-	 echo -------------------------------------
-   	 echo Please enter the name of the person you are calling
-	 echo -------------------------------------
-   	 read temp
-    
-   	 echo $temp >> ~/Desktop/scripts/udata/call_log/$uname".txt"
-   	 echo "1" >> ~/Desktop/scripts/udata/invoice/$uname".txt"
+   		 echo $contAdd Number $contNum >> ~/Desktop/scripts/udata/contacts/$uname.txt
     ;;
     
     5)
  
- 	 if grep -q $uname ~/Desktop/scripts/udata/invoice/htp.txt ; then
+ 	 if grep -q $uname ~/Desktop/scripts/udata/invoice/htp.txt  ; 
+		then
  	 echo -------------------------------------
  	 echo You have an invoice due. Please pay this off before making additional calls.
  	 echo -------------------------------------
+   echo press enter to return to main menu
+     read temp
  	 else
   	 echo -------------------------------------
      	 echo Please enter the name of the person you are calling
@@ -426,32 +411,89 @@ break;
     	 echo $temp >> ~/Desktop/scripts/udata/invoice/$uname".txt"
  	 fi
       ;;
+
+      6)    
+       echo ------------------------------------------------------------------------
+       echo \|" Please enter the name of the user you want to check the call log of: "\|
+       echo ------------------------------------------------------------------------
+     read temp
+       echo -------------------------------------
+       echo \|"          $temp""'s"" Call Log:         "\|
+       echo -------------------------------------
+     
+     cat ~/Desktop/scripts/udata/call_log/"$temp.txt"
+     echo press enter to return to main menu
+     read temp
+    ;;
     
     7)    
-		 echo -------------------------------------
+		   echo -------------------------------------
    		 echo Please enter the name of the user you want to check the contacts of\:
 	   	 echo -------------------------------------
    	 read temp
+       echo -------------------------------------
+       echo \|"      $temp""'s"" Contacts List:       "\|
+       echo -------------------------------------
    	 
-   	 cat ~/Desktop/scripts/udata/contacts/$temp.txt
+   	 cat ~/Desktop/scripts/udata/contacts/"$temp.txt"
+     echo press enter to return to main menu
+     read temp
+    ;;
+
+    8)
+    grep $uname ~/Desktop/scripts/udata/invoice/htp.txt > ~/Desktop/scripts/udata/temp3.txt
+    temp=$(awk '{ print $4 }' ~/Desktop/scripts/udata/temp3.txt)
+
+
+      echo -------------------------------------
+      echo "        Your invoice is : "$temp"         "
+      echo -------------------------------------
+        echo Do you want to pay the bill? Y,N
+        read temp
+    case $temp in
+        [yY] )
+    perl -pi -e "/$name//g" ~/Desktop/scripts/udata/invoice/htp.txt
+
+        rm  ~/Desktop/scripts/udata/invoice/"$uname.txt"
+
+    echo -------------------------------------
+    echo \|Bill has been paid.               \|
+    echo -------------------------------------
+ ;;
+    [nN] )
+    echo -------------------------------------
+            echo \|You had best pay up soon.          \|
+    echo -------------------------------------
+ ;;
+    * )
+    echo -------------------------------------
+    echo Invalid Input.
+    echo -------------------------------------
+ ;;
+    esac
+    ;;
+
+    9 )
+    echo Goodbye
+    count=1
     ;;
     
     *)
    	 echo invalid input
     ;;
     esac
-}
-else
-{
-   		echo \|"1. Add contacts to device          "\|
+;;
+
+*)
+   		    echo \|"1. Add contacts to device          "\|
         	echo \|"2. Place call                      "\|
         	echo \|"3. Check device call log           "\|
         	echo \|"4. Check contacts                  "\|
         	echo \|"5. Check invoice                   "\|
         	echo \|"6. Pay bill                        "\|
-		echo -------------------------------------
-        	echo Please enter the number of the menu you wish to enter
-		if grep -q $uname ~/Desktop/scripts/udata/invoice/htp.txt ; then
+          echo \|"7. Quit                            "\|
+		      echo -------------------------------------
+		if  grep -q $uname ~/Desktop/scripts/udata/invoice/htp.txt  ; then
  		echo -------------------------------------
  		echo \|You have an invoice due.           \|
  		echo -------------------------------------
@@ -468,29 +510,28 @@ else
     case $menuSelect in
     1)
 		echo -------------------------------------
-   	 	echo \|"Please enter contact name:         "\|
-		echo -------------------------------------
-   	 	read contAdd
-   	 
-		echo -------------------------------------
-   	 	echo \|"Please enter contact number:       "\|
-		echo -------------------------------------
-   	 	read contNum
-   	 
-   	 	cont=(wc -l ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt)
-   		 
-   	 	echo $cont $contAdd Number $contNum\n >> ~/Desktop/scripts/udata/contacts/$uname\_contacts.txt
-   	 ;;
+       echo \|"Please enter contact name:        "\|
+     echo -------------------------------------
+       read contAdd
+    
+     echo -------------------------------------
+       echo \|"Please enter contact number:      "\|
+     echo -------------------------------------
+       read contNum
+    
+       echo $contAdd Number $contNum >> ~/Desktop/scripts/udata/contacts/$uname.txt
+    ;;
 
 
 
 
    	 2)
  		
- 	 	if grep -q $uname ~/Desktop/scripts/udata/invoice/htp.txt ; then
- 		echo -------------------------------------
- 	 	echo You have an invoice due. Please pay this off before making additional calls.
- 	 	echo -------------------------------------
+ 	 	if  grep -q $uname ~/Desktop/scripts/udata/invoice/htp.txt  ; 
+      then
+ 		echo ------------------------------------------------------------------------
+ 	 	echo \|"You have an invoice due. Please pay this off before making additional calls."\|
+ 	 	echo ------------------------------------------------------------------------
  
  		else
  		echo -------------------------------------
@@ -507,65 +548,71 @@ else
 		echo -------------------------------------
    	 	cat ~/Desktop/scripts/udata/call_log/$uname".txt"
 		echo -------------------------------------
+    echo press enter to return to main menu
+     read temp
    	 ;;
     
    	 4)
 		echo -------------------------------------
    	 	cat ~/Desktop/scripts/udata/contacts/$uname".txt"
 		echo -------------------------------------
+    echo press enter to return to main menu
+     read temp
    	 ;;
     
    	 5)
-		echo -------------------------------------
-   	 	cat ~/Desktop/scripts/udata/invoice/$uname".txt"
-		echo -------------------------------------
+		  invToPay=$(wc -l < ~/Desktop/scripts/udata/invoice/$uname.txt)
+      ((invToPay--))
+     echo -------------------------------------
+                  echo \|"Currently you owe $"$invToPay"."\|
+     echo ------------------------------------- 
+    echo press enter to return to main menu
+     read temp
    	 ;;
     
    	 6)
-  		echo -------------------------------------
-     	 	echo Your invoice is\:
-		
- 		grep $uname ~/Desktop/scripts/udata/invoice/htp.txt
-    	 	echo -------------------------------------
-    	 	echo "Do" you want to pay the bill? Y,N
-    	 	read temp
- 		case $temp in
-    		[yY] )
- 		sed -i "/$uname/d" ~/Desktop/scripts/udata/invoice/htp.txt
- 		echo -------------------------------------
- 		echo \|Bill has been paid.               \|
- 		echo -------------------------------------
+  		grep $uname ~/Desktop/scripts/udata/invoice/htp.txt > ~/Desktop/scripts/udata/temp3.txt
+    temp=$(awk '{ print $4 }' ~/Desktop/scripts/udata/temp3.txt)
+
+
+      echo -------------------------------------
+      echo "        Your invoice is : $"$invToPay"         "
+      echo -------------------------------------
+        echo Do you want to pay the bill? Y,N
+        read temp
+    case $temp in
+        [yY] )
+    perl -pi -e "/$name//g" ~/Desktop/scripts/udata/invoice/htp.txt
+
+        echo '' >  ~/Desktop/scripts/udata/invoice/"$uname.txt"
+
+    echo -------------------------------------
+    echo \|Bill has been paid.               \|
+    echo -------------------------------------
  ;;
- 		[nN] )
- 		echo -------------------------------------
-        		echo \|You had best pay up soon.          \|
- 		echo -------------------------------------
+    [nN] )
+    echo -------------------------------------
+            echo \|You had best pay up soon.          \|
+    echo -------------------------------------
  ;;
- 		* )
- 		echo -------------------------------------
- 		echo Invalid Input.
- 		echo -------------------------------------
+    * )
+    echo -------------------------------------
+    echo Invalid Input.
+    echo -------------------------------------
  ;;
- esac
+    esac
     ;;
-    
 
 
-
+    7 )
+    echo Goodbye
+    count=1
+    ;;
 
     *)
    	 echo invalid input
     ;;
     esac
-}
-fi
-echo
-temp=""
+;;
+esac
 done
-
-
-
-
-
-
-
