@@ -55,16 +55,18 @@ temp3=""
 temp4=0
 
 
-temp='cat user_list.txt | wc-l'
+temp=$(cat ~/Desktop/scripts/udata/user_list.txt | wc -l )
 
 uname=$(awk '{ print $2 }' ~/Desktop/scripts/udata/user_list.txt)
 	
 echo $uname > ~/Desktop/scripts/udata/temp3.txt
 ((abc=0))
-#used to be for contMain in {1..$temp}
-for contMain in {1..6}
+  echo $temp
+  echo $temp4
+for contMain in $(seq $temp4 $temp)
 do
 	((abc=abc+1))
+  echo $abc
 	temp3=$(awk -v def=$abc '{ print $def }' ~/Desktop/scripts/udata/temp3.txt)
   touch ~/Desktop/scripts/udata/invoice/"$temp3.txt"
 	
